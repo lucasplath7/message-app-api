@@ -1,0 +1,22 @@
+services:
+  node-api:
+    build: .
+    container_name: template-app-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=80
+      - DB_URL=${DB_URL}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=docker-redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    networks:
+      - web
+      - backend
+
+networks:
+  web:
+    external: true
+  backend:
+    external: true
