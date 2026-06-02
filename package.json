@@ -1,5 +1,5 @@
 {
-  "name": "template-app-api",
+  "name": "message-app-api",
   "version": "1.0.0",
   "description": "TypeScript Node.js API with structured resource modules",
   "private": true,

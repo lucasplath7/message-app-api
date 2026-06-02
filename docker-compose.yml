@@ -1,7 +1,7 @@
 services:
   node-api:
     build: .
-    container_name: template-app-api
+    container_name: message-app-api
     restart: unless-stopped
     environment:
       - NODE_ENV=production

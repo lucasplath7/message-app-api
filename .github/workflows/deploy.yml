@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: /home/lucas/apis/template-app-api
+        working-directory: /home/lucas/apis/message-app-api
 
     steps:
       - name: Pull latest code
