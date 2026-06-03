@@ -23,6 +23,8 @@ jobs:
         env:
           DB_URL: ${{ secrets.DB_URL }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: |
           docker compose down
           docker compose up -d --build
