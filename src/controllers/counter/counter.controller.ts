@@ -1,6 +1,10 @@
 import type { Request, Response } from "express";
-import { redis, COUNTER_KEY, COUNTER_CHANNEL } from "../../config/redis.js";
+import { redis } from "../../config/redis.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
+
+// Legacy counter — no longer exposed via the router, kept for reference only.
+const COUNTER_KEY = "counter";
+const COUNTER_CHANNEL = "counter:updated";
 
 export const getCounterController = asyncHandler(async (_req: Request, res: Response) => {
   const value = await redis.get(COUNTER_KEY);
@@ -18,4 +22,3 @@ export const decrementCounterController = asyncHandler(async (_req: Request, res
   await redis.publish(COUNTER_CHANNEL, String(value));
   res.status(200).json({ counter: String(value) });
 });
-

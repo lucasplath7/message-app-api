@@ -6,8 +6,11 @@ import { initSocket } from "./config/socket.js";
 
 const httpServer = createServer(app);
 
-initSocket(httpServer);
-
-httpServer.listen(env.PORT, "0.0.0.0", () => {
-  logger.info(`Server running on port ${env.PORT}`, { env: env.NODE_ENV });
+initSocket(httpServer).then(() => {
+  httpServer.listen(env.PORT, "0.0.0.0", () => {
+    logger.info(`Server running on port ${env.PORT}`, { env: env.NODE_ENV });
+  });
+}).catch((err) => {
+  logger.error("Failed to initialise socket server", err);
+  process.exit(1);
 });

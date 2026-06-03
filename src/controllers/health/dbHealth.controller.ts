@@ -1,23 +1,18 @@
 import type { Request, Response } from "express";
 import { db } from "../../config/db.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
-import { AppError } from "../../utils/appError.js";
 
 export const dbHealthCheckController = asyncHandler(async (_req: Request, res: Response) => {
-  const row = await db
-    .selectFrom("template_app.test_table")
-    .select("test_strings")
+  // Simple connectivity check — just verify the DB responds
+  await db
+    .selectFrom("messaging.users")
+    .select("id")
     .limit(1)
-    .executeTakeFirst();
-
-  if (!row) {
-    throw new AppError(404, "No records found in template_app.test_table");
-  }
+    .execute();
 
   res.status(200).json({
     status: "ok",
     message: "Database is healthy",
-    data: row.test_strings,
     timestamp: new Date().toISOString()
   });
 });

@@ -1,4 +1,13 @@
-const formatMeta = (meta?: unknown) => (meta ? ` ${JSON.stringify(meta)}` : "");
+const formatMeta = (meta?: unknown): string => {
+  if (!meta) return "";
+  if (meta instanceof Error)
+    return ` ${meta.message}${meta.stack ? `\n${meta.stack}` : ""}`;
+  try {
+    return ` ${JSON.stringify(meta, Object.getOwnPropertyNames(meta))}`;
+  } catch {
+    return ` ${String(meta)}`;
+  }
+};
 
 export const logger = {
   info(message: string, meta?: unknown) {
@@ -8,4 +17,3 @@ export const logger = {
     console.error(`[ERROR] ${message}${formatMeta(meta)}`);
   }
 };
-
