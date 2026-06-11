@@ -59,6 +59,7 @@ DB_URL=postgresql://user:password@host:5432/dbname
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_PASSWORD=your_redis_password
+REDIS_DEBUG=false
 
 # Clerk  (from https://dashboard.clerk.com)
 CLERK_SECRET_KEY=sk_test_...

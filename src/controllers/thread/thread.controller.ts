@@ -2,7 +2,8 @@ import type { Request, Response } from "express";
 import { db } from "../../config/db.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
 import { AppError } from "../../utils/appError.js";
-import { publish, CHANNELS } from "../../config/redis.js";
+import { publish } from "../../realtime/publish.js";
+import { CHANNELS } from "../../realtime/channels.js";
 import type { CreateThreadBody, ThreadIdParam } from "../../schemas/thread/thread.schemas.js";
 
 // ── Shape helpers ────────────────────────────────────────────────
